@@ -32,9 +32,25 @@ def load_env():
 load_env()
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
 
 app.secret_key = os.environ.get("SECRET_KEY", "change-this-secret-key")
+
+FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "http://localhost:3000")
+FRONTEND_ORIGINS = [
+    origin.strip()
+    for origin in FRONTEND_ORIGIN.split(",")
+    if origin.strip()
+]
+
+CORS(app, supports_credentials=True, origins=FRONTEND_ORIGINS)
+
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = os.environ.get(
+    "SESSION_COOKIE_SAMESITE", "None"
+)
+app.config["SESSION_COOKIE_SECURE"] = (
+    os.environ.get("SESSION_COOKIE_SECURE", "true").lower() == "true"
+)
 
 AIVEN_DB_HOST = os.environ.get("AIVEN_DB_HOST", "localhost")
 AIVEN_DB_PORT = os.environ.get("AIVEN_DB_PORT", "3306")
@@ -62,4 +78,4 @@ login = LoginManager(app=app)
 
 @login.unauthorized_handler
 def unauthorized():
-    return jsonify({"ok": False, "error": "Vui long dang nhap"}), 401
+    return jsonify({"ok": False, "error": "Vui lòng đăng nhập"}), 401
