@@ -174,7 +174,7 @@ Hệ thống sẽ tạo tài khoản demo nếu chưa tồn tại:
 
 ```text
 Username: demo
-Password: demo123
+Password: 123456
 ```
 
 ## API chính
@@ -239,3 +239,4 @@ Frontend đã deploy tại:
 ```text
 https://todo-list-management.pages.dev/
 ```
+
