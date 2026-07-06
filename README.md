@@ -231,3 +231,12 @@ Lưu ý: Nếu backend đã bắt buộc đăng nhập cho API Todo, test cần 
 * Tổ chức mã nguồn rõ ràng theo mô hình backend/frontend.
 * README hướng dẫn chạy dự án.
 * Có phân trang, sắp xếp và responsive.
+
+## Deploy
+
+Frontend đã deploy tại:
+
+```text
+https://todo-list-management.pages.dev/
+```
+
